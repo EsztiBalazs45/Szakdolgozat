@@ -17,7 +17,9 @@ class NewsletterFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'newsletter_title'=>fake()->name(),
+            'newsletter_status'=>fake()->randomElement(['active', 'inactive']),
+            
         ];
     }
 }

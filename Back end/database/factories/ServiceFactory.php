@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'services_name'=>fake()->name(),
+            'services_description'=>fake()->text(),
+            'services_price'=>fake()->randomNumber(5, true),
         ];
     }
 }

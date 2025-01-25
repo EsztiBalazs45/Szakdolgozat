@@ -17,7 +17,7 @@ class DataFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'data_name'=>fake()->name(),
         ];
     }
 }

@@ -17,7 +17,10 @@ class AppointmentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'date' => $this->faker->date(),
+            'timeline' => $this->faker->time(),
+            'status' => $this->faker->randomElement(['pending', 'confirmed', 'canceled']),
+            'description' => $this->faker->sentence(),
         ];
     }
 }
