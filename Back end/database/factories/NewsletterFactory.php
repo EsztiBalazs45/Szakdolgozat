@@ -18,7 +18,8 @@ class NewsletterFactory extends Factory
     {
         return [
             'newsletter_title'=>fake()->name(),
-            'newsletter_status'=>fake()->randomElement(['active', 'inactive']),
+            'newsletter_status'=>fake()->numberBetween(0, 1),
+            'user_id'=> fake()->numberBetween(1, 10),
             
         ];
     }

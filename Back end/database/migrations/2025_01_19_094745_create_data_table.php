@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('DataName');
             $table->string('DataFile');
-            $table->timestamps();
+            
         });
     }
 

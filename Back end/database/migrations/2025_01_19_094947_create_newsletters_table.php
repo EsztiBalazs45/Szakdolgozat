@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('newsletters', function (Blueprint $table) {
             $table->id();
             $table->string('newsletter_title');
-            $table->boolean('newsletter_status');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->integer('newsletter_status');
+            $table->foreignId('user_id')->constrained('users','id');
             $table->timestamps();
         });
     }

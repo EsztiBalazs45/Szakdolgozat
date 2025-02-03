@@ -21,6 +21,7 @@ class AppointmentFactory extends Factory
             'timeline' => $this->faker->time(),
             'status' => $this->faker->randomElement(['pending', 'confirmed', 'canceled']),
             'description' => $this->faker->sentence(),
+            'user_id'=> fake()->numberBetween(1, 10),
         ];
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->time('timeline');
             $table->string('status');
             $table->string('description');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained('users','id');
             $table->timestamps();
         });
     }

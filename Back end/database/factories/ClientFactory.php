@@ -23,6 +23,7 @@ class ClientFactory extends Factory
             'headquarters'=>fake()->address(),
             'contact_person'=>fake()->name(),
             'contact_number'=>fake()->phoneNumber(),
+            'user_id'=> fake()->numberBetween(1, 10),
         ];
     }
 }

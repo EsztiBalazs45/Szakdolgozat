@@ -5,7 +5,8 @@ namespace Database\Seeders;
 use App\Models\admin;
 use App\Models\appointment;
 use App\Models\client;
-use App\Models\service;
+use App\Models\data;
+use App\Models\newsletter;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,29 +20,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => fake()->name(),
-            'username' => fake()->userName(),
-            'email' => fake()->unique()->safeEmail(),
-            'password' => fake()->password(),
+
+        User::factory(100)->create();
+        client::factory(75)->create();
+        appointment::factory(25)->create();
+        admin::factory(1)->create();
+        $service_user = \App\Models\service_user::factory(10)->create();
+        \App\Models\service::factory(10)->create([
+            'service_id' => $service_user->random()->id,
         ]);
-        admin::factory()->create([
-            'username' => fake()->userName(),
-            'password' => fake()->password(),
-        ]);
-        client::factory()->create([
-            'companyname'=>fake()->name(),
-            'tax_number'=>fake()->randomNumber(9, true),
-            'registration_number'=>fake()->randomNumber(9, true),
-            'headquarters'=>fake()->address(),
-            'contact_person'=>fake()->name(),
-            'contact_number'=>fake()->phoneNumber(),
-        ]);
-        service::factory()->create([
-            'service_name' => fake()->name(),
-            'service_description' => fake()->paragraph(),
-            'service_price' => fake()->randomFloat(2, 0, 100000),
-        ]);
+        newsletter::factory(10)->create();
 
         
     }
