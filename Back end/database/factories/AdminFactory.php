@@ -17,8 +17,9 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => $this->faker->userName(),
-            'password' => $this->faker->password(),
+            'username' => 'admin@gmail.com',
+
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
         ];
     }
 }

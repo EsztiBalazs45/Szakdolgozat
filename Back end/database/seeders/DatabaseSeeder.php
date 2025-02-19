@@ -22,14 +22,14 @@ class DatabaseSeeder extends Seeder
 
 
         User::factory(100)->create();
-        client::factory(75)->create();
-        appointment::factory(25)->create();
-        admin::factory(1)->create();
-        $service_user = \App\Models\service_user::factory(10)->create();
+        Client::factory(75)->create();
+        Appointment::factory(25)->create();
+        Admin::factory(1)->create();
+        $service_user = \App\Models\Service_user::factory(10)->create();
         \App\Models\service::factory(10)->create([
             'service_id' => $service_user->random()->id,
         ]);
-        newsletter::factory(10)->create();
+        Newsletter::factory(5)->create();
 
         
     }
