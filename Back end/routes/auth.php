@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -9,6 +10,10 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -33,6 +38,13 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
+    Route::apiResource('services', ServiceController::class);
+    Route::apiResource('dowloaddata', DataController::class);
+    Route::apiResource('newsletter', NewsletterController::class);
+    Route::post('/appointment/booking', [AppointmentController::class, 'bookingPage'])->name('appointment.booking');
+    Route::apiResource('appointment', AppointmentController::class);
+    Route::apiResource('clients', ClientController::class);
+
 });
 
 Route::middleware('auth')->group(function () {
