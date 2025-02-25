@@ -47,6 +47,7 @@ import { onMounted, ref } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import axios from "axios";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -55,10 +56,25 @@ export default {
     const panelsContainer = ref(null);
     const navbar = ref(null);
     const panels = ref(Array(5).fill(null));
-    const galleryCards = ref(["", "1", "2", "3"]);
+    const galleryCards = ref(["0", "1", "2", "3"]);
     const currentCard = ref(0);
     const panelNames = ref(["Kezdőlap", "Rólunk", "Dokumentumok", "Szolgáltatások", "Elérhetőségek"]);
     let tween;
+
+
+
+    const galleryCard = ref([]);
+
+    const fetchGalleryCards = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/services");
+        galleryCard.value = response.data;
+      } catch (error) {
+        console.error("Hiba történt az adatok lekérésekor:", error);
+      }
+    };
+
+    onMounted(fetchGalleryCards);
 
     onMounted(() => {
       const panelElems = gsap.utils.toArray(".panel");
@@ -94,7 +110,7 @@ export default {
       });
       setInterval(() => {
         nextCard();
-      }, 5000); 
+      }, 5000);
     });
 
     const scrollToPanel = (index) => {
@@ -294,5 +310,4 @@ a {
 a:hover {
   text-decoration: underline;
 }
-
 </style>
